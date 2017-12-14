@@ -4,23 +4,44 @@ $(document).ready(function(){
     // https://wind-bow.glitch.me/twitch-api/streams/ESL_SC2
     // https://wind-bow.glitch.me/twitch-api/users/freecodecamp
 
-    var api = "https://wind-bow.glitch.me/twitch-api/streams/ESL_SC2";
+    var api = "https://wind-bow.glitch.me/twitch-api/";
+    // var type = ["users", "streams"];
+    // var streamer = ["ESL_SC2", "freecodecamp", "riotgames" ];
 
-    $.ajax({    
-        url: (api),
-        type: 'GET',
-        dataType: 'jsonp',
-        success: function(a) {
+
+
+    function fetchApiData (type, streamer) {
+        $.ajax({    
+            url: (api + type + '/' + streamer)  ,
+            type: 'GET',
+            dataType: 'jsonp',
+            success: function(a) {
+                
+            var parsedJsonData = a;
+            console.log(parsedJsonData);
             
-        pageJsonData = a;
-        console.log(pageJsonData);
-
-         
-        
-        },
-        error: function() { console.log('Failed!'); },
-    });
 
 
+            },
+            error: function() { console.log('Failed!'); },
+        });
+
+
+    };
+
+    // RIOTGAMES
+    function riotGames() {
+        fetchApiData("users", "riotgames");  
+        console.log("wtf");
+        streamerLogo = parsedJsonData.logo;
+        $(".riotgames-logo").attr("src", streamerLogo);
+
+    }
+
+    riotGames();
+
+     
+
+    
 
 });
