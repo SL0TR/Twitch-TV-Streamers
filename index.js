@@ -15,12 +15,9 @@ $(document).ready(function(){
                 url: (api + type + '/' + streamer)  ,
                 type: 'GET',
                 dataType: 'jsonp',
-                success: function(a) {
+                success: function(data) {
                     
-                var parsedJsonData = a;
-                console.log(parsedJsonData);
-                streamerLogo = parsedJsonData.logo;
-                riotGames();
+                streamApiFetches(data.logo);
                 },
                 error: function() { console.log('Failed!'); },
             });
@@ -29,10 +26,10 @@ $(document).ready(function(){
         };
     
         // RIOTGAMES
-        function riotGames() {
+        function streamApiFetches(logo) {
              
     
-            $(".riotgames-logo").attr("src", streamerLogo);
+            $(".riotgames-logo").attr("src", logo);
     
         }
     
