@@ -27,7 +27,6 @@ $(document).ready(function(){
     
         // RIOTGAMES
         function streamApiFetches(logo) {
-             
     
             $(".riotgames-logo").attr("src", logo);
     
