@@ -15,24 +15,20 @@ $(document).ready(function(){
                 url: (api + type + '/' + streamer)  ,
                 type: 'GET',
                 dataType: 'jsonp',
-                success: function(a) {
+                success: function(data) {
                     
-                var parsedJsonData = a;
-                console.log(parsedJsonData);
-                streamerLogo = parsedJsonData.logo;
-                riotGames();
+                riotGames(data.logo);
                 },
                 error: function() { console.log('Failed!'); },
             });
     
     
         };
-    
+        
         // RIOTGAMES
-        function riotGames() {
+        function riotGames(url) {
              
-    
-            $(".riotgames-logo").attr("src", streamerLogo);
+            $(".riotgames-logo").attr("src", url);
     
         }
     
