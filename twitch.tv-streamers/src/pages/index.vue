@@ -2,44 +2,43 @@
   <q-page>
     <section class="mainPage">
       <div class="header">
-          <img class="twitch-logo" src="https://i.lensdump.com/i/sl6Ob.png" alt="twitch logo">
-          <h1>Streamers!</h1>
+        <h2>Twitch Tv Streamers</h2>
       </div>
       <div class="monitorContainer">
-          <img class="monitor" src="https://www.directpackages.com/assets/seo-c/images/devices/tv.png" alt="monitor">
-          <div class="monitorContent">
-              <div class="monitorNav">
-                  <div class="all stream-status active">
-                      <i class="ion-navicon-round"></i>
-                      <p>All</p>
-                  </div>
-                  <div class="online stream-status">
-                      <i class="ion-ios-circle-filled"></i>
-                      <p>Online</p>
-                  </div>
-                  <div class="offline stream-status">
-                      <i class="ion-ios-circle-outline"></i>
-                      <p>Offline</p>
-                  </div>
-              </div>
-              <div class="monitorSubContent">
-                  <div class="stream-card">
-                      <p class="streamer-name"></p>
-                      <img class="streamer-logo esl-logo"  alt="logo">
-                      <p class="status"></p>
-                  </div>
-                  <div class="stream-card">
-                      <p class="streamer-name"></p>
-                      <img class="streamer-logo riotgames-logo" salt="logo">
-                      <p class="status"></p>
-                  </div>
-                  <div class="stream-card">
-                      <p class="streamer-name"></p>
-                      <img  class="streamer-logo fcc-logo"  alt="logo">
-                      <p class="status"></p>
-                  </div>
-              </div>
+        <img class="monitor" src="https://www.directpackages.com/assets/seo-c/images/devices/tv.png" alt="monitor">
+        <div class="monitorContent">
+          <div class="monitorNav">
+            <div class="all stream-status active">
+              <i class="ion-navicon-round"></i>
+              <p>All</p>
+            </div>
+            <div class="online stream-status">
+              <i class="ion-ios-circle-filled"></i>
+              <p>Online</p>
+            </div>
+            <div class="offline stream-status">
+              <i class="ion-ios-circle-outline"></i>
+              <p>Offline</p>
+            </div>
           </div>
+          <div class="monitorSubContent">
+            <div class="stream-card">
+              <p class="streamer-name"></p>
+              <img class="streamer-logo esl-logo"  alt="logo">
+              <p class="status"></p>
+            </div>
+            <div class="stream-card">
+              <p class="streamer-name"></p>
+              <img class="streamer-logo riotgames-logo" salt="logo">
+              <p class="status"></p>
+            </div>
+            <div class="stream-card">
+              <p class="streamer-name"></p>
+              <img  class="streamer-logo fcc-logo"  alt="logo">
+              <p class="status"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </q-page>
@@ -47,6 +46,7 @@
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Lobster|Raleway:300,400,500,700");
+
 * {
   margin: 0;
   padding: 0;
@@ -55,38 +55,28 @@
   font-size: 14px;
 }
 
-.mainPage {
-  height: 100vh;
-  width: 100vw;
-  background: #7c5aae;
+.q-layout-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  margin-top: 1em;
-}
-
-.header h1 {
-  color: #fff;
-  font-size: 2em;
-  margin-top: 1em;
-  margin-left: 0.2em;
-  font-family: "Lobster", cursive;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 4rem;
 }
 
 .twitch-logo {
-  height: 4em;
-  width: 8em;
+  height: 3.5em;
+  width: 6em;
 }
 
 .monitorContainer {
   position: relative;
+  bottom: 1rem;
+
 }
 
 .monitor {
@@ -95,11 +85,12 @@
 }
 
 .monitorContent {
-  background: linear-gradient(to right, #6441a5, #2a0845);
+  /* background: linear-gradient(to right, #6441a5, #2a0845); */
+  background: rgba(124, 90, 174, .8);
   position: absolute;
   height: calc(100% - 6em);
   width: calc(100% - 0.6em);
-  top: 0.44em;
+  top: 0.38em;
   left: 0.3em;
   display: flex;
 }
@@ -187,4 +178,7 @@
 export default {
   name: 'PageIndex'
 }
+//  https://wind-bow.glitch.me/twitch-api/streams/ESL_SC2
+//  https://wind-bow.glitch.me/twitch-api/users/freecodecamp
+//  https://wind-bow.glitch.me/twitch-api/
 </script>

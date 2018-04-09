@@ -1,5 +1,14 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout>
+    <q-layout-header>
+      <q-toolbar
+        color="primary"
+      >
+        <q-toolbar-title>
+          <img class="twitch-logo" src="https://i.lensdump.com/i/sl6Ob.png" alt="twitch logo">
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-layout-header>
     <q-page-container>
       <router-view />
     </q-page-container>
