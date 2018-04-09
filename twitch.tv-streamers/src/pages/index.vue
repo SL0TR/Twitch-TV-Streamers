@@ -59,6 +59,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(to bottom, #351A6B, #6445A2);
 }
 
 .header {
@@ -66,6 +67,7 @@
   width: 100%;
   position: relative;
   bottom: 4rem;
+  color: #eee;
 }
 
 .twitch-logo {
@@ -86,7 +88,8 @@
 
 .monitorContent {
   /* background: linear-gradient(to right, #6441a5, #2a0845); */
-  background: rgba(124, 90, 174, .8);
+  /* background: rgba(124, 90, 174, .8); */
+  background: #81ecec;
   position: absolute;
   height: calc(100% - 6em);
   width: calc(100% - 0.6em);
@@ -97,7 +100,7 @@
 
 .monitorNav {
   flex: 1;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(100, 69, 162, 8);
   display: flex;
   flex-direction: column;
 }
@@ -175,10 +178,30 @@
 </style>
 
 <script>
-export default {
-  name: 'PageIndex'
-}
 //  https://wind-bow.glitch.me/twitch-api/streams/ESL_SC2
 //  https://wind-bow.glitch.me/twitch-api/users/freecodecamp
 //  https://wind-bow.glitch.me/twitch-api/
+export default {
+  name: 'PageIndex',
+  data () {
+    return {
+      users: {}
+    }
+  },
+  methods: {
+    getTwitchApiData () {
+      this.$axios.get('https://wind-bow.glitch.me/twitch-api/users/freecodecamp')
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  },
+  created () {
+    this.getTwitchApiData()
+  }
+}
+
 </script>
