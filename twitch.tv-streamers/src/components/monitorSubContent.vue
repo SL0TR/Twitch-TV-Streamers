@@ -3,7 +3,7 @@
     <div class="stream-card" v-for="(user,id) in this.users" :key="id">
       <p class="streamer-name">{{ user.display_name }}</p>
       <img class="streamer-logo esl-logo"  alt="logo" :src="user.logo">
-      <p class="status">{{ user.type }}</p>
+      <p class="bio">{{ user.bio }}</p>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
         .then(res => {
           let data = res.data
           this.users.push(data)
-          console.log(data)
+          // console.log(data)
         })
         .catch(err => {
           console.log(err)
@@ -36,6 +36,7 @@ export default {
       this.getTwitchApiData('riotgames')
       this.getTwitchApiData('starladder1')
       this.getTwitchApiData('shadbasemurdertv')
+      this.getTwitchApiData('imaqtpie')
     }
   },
   created () {
@@ -58,7 +59,7 @@ export default {
 .stream-card {
   height: 25rem;
   width: 20rem;
-  background: #000;
+  background: linear-gradient(rgb(140, 97, 226), rgb(53, 26, 107));
   border-radius: 0.5em;
   box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
   display: flex;
@@ -72,17 +73,28 @@ export default {
   padding: 1rem;
 }
 
-.stream-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0px 10px 11px -2px rgba(0, 0, 0, 0.55);
-  cursor: pointer;
-}
-
-.stream-card p {
+.stream-card .streamer-name {
   font-size: 2em;
   font-weight: bold;
   z-index: 1;
   color: #eee;
+  position: relative;
+  top: 5rem;
+  transition: .3s;
+  font-family: 'Lobster', cursive;
+  opacity: 0;
+}
+
+.stream-card .bio {
+  color: #eee;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1;
+  font-size: 1.1em;
+  word-wrap: break-word;
+  width: 90%;
+  opacity: 0;
+  transition: .5s;
 }
 
 .stream-card .streamer-logo {
@@ -91,6 +103,26 @@ export default {
   border-radius: 0.2em;
   position: absolute;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 1;
 }
+
+.stream-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 10px 11px -2px rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.stream-card:hover .bio {
+  opacity: 1;
+}
+
+.stream-card:hover .streamer-name {
+  top: 0;
+  opacity: 1;
+}
+
+.stream-card:hover .streamer-logo {
+  opacity: .25;
+}
+
 </style>
