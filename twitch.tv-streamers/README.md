@@ -1,3 +1,3 @@
-# Quasar App
+# Twitch.tv Streamers
 
-> WIP
+>Project ongoing

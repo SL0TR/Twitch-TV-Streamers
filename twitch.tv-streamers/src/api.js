@@ -8,4 +8,4 @@ export const api = root + 'twitch-api/'
 
 export const users = api + 'users/'
 
-export const streams = api + 'steams/'
+export const streams = api + 'streams/'

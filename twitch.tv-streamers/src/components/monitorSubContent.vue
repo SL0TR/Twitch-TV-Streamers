@@ -1,9 +1,9 @@
 <template>
   <div class="monitorSubContent">
     <div class="stream-card" v-for="(user,id) in this.users" :key="id">
-      <p class="streamer-name"></p>
+      <p class="streamer-name">{{ user.display_name }}</p>
       <img class="streamer-logo esl-logo"  alt="logo" :src="user.logo">
-      <p class="status"></p>
+      <p class="status">{{ user.type }}</p>
     </div>
   </div>
 </template>
@@ -29,14 +29,17 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    getAllTwitchApiData () {
+      this.getTwitchApiData('ESL_SC2')
+      this.getTwitchApiData('freecodecamp')
+      this.getTwitchApiData('riotgames')
+      this.getTwitchApiData('starladder1')
+      this.getTwitchApiData('shadbasemurdertv')
     }
   },
   created () {
-    this.getTwitchApiData('ESL_SC2')
-    this.getTwitchApiData('freecodecamp')
-    this.getTwitchApiData('riotgames')
-    this.getTwitchApiData('starladder1')
-    this.getTwitchApiData('shadbasemurdertv')
+    this.getAllTwitchApiData()
     console.log(this.users)
   }
 }
@@ -66,6 +69,7 @@ export default {
   position: relative;
   overflow: hidden;
   margin: 2rem 0;
+  padding: 1rem;
 }
 
 .stream-card:hover {
@@ -75,7 +79,7 @@ export default {
 }
 
 .stream-card p {
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: bold;
   z-index: 1;
   color: #eee;
