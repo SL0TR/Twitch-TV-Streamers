@@ -25,5 +25,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.twitch-logo {
+  height: 3.5em;
+  width: 6em;
+}
 </style>
