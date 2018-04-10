@@ -1,18 +1,8 @@
 <template>
   <div class="monitorSubContent">
-    <div class="stream-card">
+    <div class="stream-card" v-for="(user,id) in this.users" :key="id">
       <p class="streamer-name"></p>
-      <img class="streamer-logo esl-logo"  alt="logo">
-      <p class="status"></p>
-    </div>
-    <div class="stream-card">
-      <p class="streamer-name"></p>
-      <img class="streamer-logo riotgames-logo" salt="logo">
-      <p class="status"></p>
-    </div>
-    <div class="stream-card">
-      <p class="streamer-name"></p>
-      <img  class="streamer-logo fcc-logo"  alt="logo">
+      <img class="streamer-logo esl-logo"  alt="logo" :src="user.logo">
       <p class="status"></p>
     </div>
   </div>
@@ -25,14 +15,16 @@ export default {
   name: 'PageIndex',
   data () {
     return {
-      users: {}
+      users: []
     }
   },
   methods: {
     getTwitchApiData (channel) {
       this.$axios.get(users + channel)
         .then(res => {
-          console.log(res)
+          let data = res.data
+          this.users.push(data)
+          console.log(data)
         })
         .catch(err => {
           console.log(err)
@@ -42,6 +34,10 @@ export default {
   created () {
     this.getTwitchApiData('ESL_SC2')
     this.getTwitchApiData('freecodecamp')
+    this.getTwitchApiData('riotgames')
+    this.getTwitchApiData('starladder1')
+    this.getTwitchApiData('shadbasemurdertv')
+    console.log(this.users)
   }
 }
 </script>
@@ -50,13 +46,15 @@ export default {
 .monitorSubContent {
   flex: 10;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
+  overflow: auto;
+  padding: 2rem 1rem;
 }
 
 .stream-card {
-  height: 80%;
-  width: 25%;
+  height: 25rem;
+  width: 20rem;
   background: #000;
   border-radius: 0.5em;
   box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
@@ -67,6 +65,7 @@ export default {
   transition: 0.2s;
   position: relative;
   overflow: hidden;
+  margin: 2rem 0;
 }
 
 .stream-card:hover {
@@ -88,6 +87,6 @@ export default {
   border-radius: 0.2em;
   position: absolute;
   z-index: 0;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 </style>

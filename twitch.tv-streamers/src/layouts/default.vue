@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped>
+.q-toolbar-title {
+  padding: .5rem;
+}
 .twitch-logo {
   height: 3.5em;
   width: 6em;

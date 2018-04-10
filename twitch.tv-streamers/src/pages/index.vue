@@ -2,7 +2,7 @@
   <q-page>
     <section class="mainPage">
       <div class="header-title">
-        <h2>Twitch Tv Streamers</h2>
+        <h2>Twitch.tv Streamers</h2>
       </div>
       <div class="monitorContainer">
         <img class="monitor" src="https://www.directpackages.com/assets/seo-c/images/devices/tv.png" alt="monitor">
