@@ -11,6 +11,7 @@
           <monitorSubContent/>
         </div>
       </div>
+      <contact/>
     </section>
   </q-page>
 </template>
@@ -33,17 +34,27 @@
   background: linear-gradient(to bottom, #351A6B, #6445A2);
 }
 
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 75px);
+  padding: 1rem 0;
+}
+
 .header-title {
   text-align: center;
   width: 100%;
-  position: relative;
-  bottom: 3rem;
   color: #eee;
+  margin: 1rem 0rem;
+}
+
+.header-title h2 {
+  font-size: 4em;
 }
 
 .monitorContainer {
   position: relative;
-  bottom: 1rem;
 
 }
 
@@ -66,6 +77,7 @@
 <script>
 import monitorNav from '../components/monitor-nav'
 import monitorSubContent from '../components/monitorSubContent'
+import contact from '../components/contact'
 
 export default {
   name: 'PageIndex',
@@ -75,7 +87,8 @@ export default {
   },
   components: {
     monitorNav,
-    monitorSubContent
+    monitorSubContent,
+    contact
   }
 }
 

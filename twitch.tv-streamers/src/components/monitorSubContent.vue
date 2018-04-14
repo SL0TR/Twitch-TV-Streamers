@@ -53,7 +53,8 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   overflow: auto;
-  padding: 2rem 1rem;
+  padding: 1rem;
+  padding-top: 1.5rem;
 }
 
 .stream-card {
