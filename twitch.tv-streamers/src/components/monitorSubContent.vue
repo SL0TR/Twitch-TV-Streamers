@@ -61,7 +61,7 @@ export default {
   height: 25rem;
   width: 20rem;
   background: linear-gradient(rgb(140, 97, 226), rgb(53, 26, 107));
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
