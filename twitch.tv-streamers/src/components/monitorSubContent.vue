@@ -41,7 +41,7 @@ export default {
   },
   created () {
     this.getAllTwitchApiData()
-    console.log(this.users)
+    // console.log(this.users)
   }
 }
 </script>

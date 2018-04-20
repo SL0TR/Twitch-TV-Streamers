@@ -5,7 +5,7 @@
         <h2>Twitch.tv Streamers</h2>
       </div>
       <div class="monitorContainer">
-        <img class="monitor" src="https://www.directpackages.com/assets/seo-c/images/devices/tv.png" alt="monitor">
+        <img class="monitor" src="../assets/tv.png" alt="monitor">
         <div class="monitorContent">
           <monitorNav/>
           <monitorSubContent/>
