@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import example from './module-example'
+import counter from './modules/getApidata'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export const store = new Vuex.Store({
+  state: {
+    clicks: 0
+  },
+  getters: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
   modules: {
-    example
+    counter
   }
 })
 
