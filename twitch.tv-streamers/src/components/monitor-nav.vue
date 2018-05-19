@@ -16,38 +16,18 @@
 </template>
 
 <script>
-import {streams} from '../api'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      stream: []
     }
   },
   methods: {
-    getTwitchApiData (channel) {
-      this.$axios.get(streams + channel)
-        .then(res => {
-          let data = res.data.stream
-          this.stream.push(data)
-          console.log(data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    getAllTwitchApiData () {
-      this.getTwitchApiData('ESL_SC2')
-      this.getTwitchApiData('freecodecamp')
-      this.getTwitchApiData('riotgames')
-      this.getTwitchApiData('starladder1')
-      this.getTwitchApiData('shadbasemurdertv')
-      this.getTwitchApiData('imaqtpie')
-    }
+    ...mapActions([
+    ])
   },
   created () {
-    this.getAllTwitchApiData()
-    console.log(this.stream)
   }
 }
 </script>
