@@ -25,24 +25,22 @@ export default {
     connectVuexUsers () {
       this.users = this.$store.getters.getUsers
       console.log(this.users)
+    },
+    getAllTwitchApiData () {
+      Array.prototype.slice.call(arguments).forEach(element => {
+        this.getUsersData({ user: element })
+      })
     }
-    // getAllTwitchApiData () {
-    //   this.getTwitchApiData('ESL_SC2')
-    //   this.getTwitchApiData('freecodecamp')
-    //   this.getTwitchApiData('riotgames')
-    //   this.getTwitchApiData('starladder1')
-    //   this.getTwitchApiData('shadbasemurdertv')
-    //   this.getTwitchApiData('imaqtpie')
-    // }
   },
   created () {
-    this.getUsersData()
+    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie')
     this.connectVuexUsers()
   }
 }
 </script>
 
 <style scoped>
+
   .monitorSubContent {
     flex: 10;
     display: flex;

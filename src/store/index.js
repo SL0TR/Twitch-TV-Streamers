@@ -19,10 +19,9 @@ const store = new Vuex.Store({
   },
   actions: {
     getUsersData: ({ commit }, payload) => {
-      axios.get(users + 'ESL_SC2')
+      axios.get(users + payload.user)
         .then(res => {
           let data = res.data
-          console.log(data)
           commit('getUsersData', data)
         })
         .catch(err => {
