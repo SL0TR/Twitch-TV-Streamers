@@ -1,18 +1,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {users} from '../api'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
-export const store = new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    users: []
   },
   getters: {
+    getUsers: state => state.users
   },
   mutations: {
+    getUsersData: (state, payload) => {
+      state.users.push(payload)
+    }
   },
   actions: {
-  },
-  modules: {
+    getUsersData: ({ commit }, payload) => {
+      axios.get(users + 'ESL_SC2')
+        .then(res => {
+          let data = res.data
+          console.log(data)
+          commit('getUsersData', data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 })
 

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {users} from '../api'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PageIndex',
@@ -19,111 +19,107 @@ export default {
     }
   },
   methods: {
-    getTwitchApiData (channel) {
-      this.$axios.get(users + channel)
-        .then(res => {
-          let data = res.data
-          this.users.push(data)
-          // console.log(data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    getAllTwitchApiData () {
-      this.getTwitchApiData('ESL_SC2')
-      this.getTwitchApiData('freecodecamp')
-      this.getTwitchApiData('riotgames')
-      this.getTwitchApiData('starladder1')
-      this.getTwitchApiData('shadbasemurdertv')
-      this.getTwitchApiData('imaqtpie')
+    ...mapActions([
+      'getUsersData'
+    ]),
+    connectVuexUsers () {
+      this.users = this.$store.getters.getUsers
+      console.log(this.users)
     }
+    // getAllTwitchApiData () {
+    //   this.getTwitchApiData('ESL_SC2')
+    //   this.getTwitchApiData('freecodecamp')
+    //   this.getTwitchApiData('riotgames')
+    //   this.getTwitchApiData('starladder1')
+    //   this.getTwitchApiData('shadbasemurdertv')
+    //   this.getTwitchApiData('imaqtpie')
+    // }
   },
   created () {
-    this.getAllTwitchApiData()
-    // console.log(this.users)
+    this.getUsersData()
+    this.connectVuexUsers()
   }
 }
 </script>
 
 <style scoped>
-.monitorSubContent {
-  flex: 10;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow: auto;
-  padding: 1rem;
-  padding-top: 1.5rem;
-}
+  .monitorSubContent {
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    padding: 1rem;
+    padding-top: 1.5rem;
+  }
 
-.stream-card {
-  height: 25rem;
-  width: 20rem;
-  background: linear-gradient(rgb(140, 97, 226), rgb(53, 26, 107));
-  border-radius: 0.3em;
-  box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  transition: 0.2s;
-  position: relative;
-  overflow: hidden;
-  margin: 2rem 0;
-  padding: 1rem;
-}
+  .stream-card {
+    height: 25rem;
+    width: 20rem;
+    background: linear-gradient(rgb(140, 97, 226), rgb(53, 26, 107));
+    border-radius: 0.3em;
+    box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    transition: 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+    padding: 1rem;
+  }
 
-.stream-card .streamer-name {
-  font-size: 2em;
-  font-weight: bold;
-  z-index: 1;
-  color: #eee;
-  position: relative;
-  top: 5rem;
-  transition: .3s;
-  font-family: 'Lobster', cursive;
-  opacity: 0;
-}
+  .stream-card .streamer-name {
+    font-size: 2em;
+    font-weight: bold;
+    z-index: 1;
+    color: #eee;
+    position: relative;
+    top: 5rem;
+    transition: .3s;
+    font-family: 'Lobster', cursive;
+    opacity: 0;
+  }
 
-.stream-card .bio {
-  color: #eee;
-  font-weight: bold;
-  text-align: center;
-  z-index: 1;
-  font-size: 1.1em;
-  word-wrap: break-word;
-  width: 90%;
-  opacity: 0;
-  transition: .5s;
-}
+  .stream-card .bio {
+    color: #eee;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+    font-size: 1.1em;
+    word-wrap: break-word;
+    width: 90%;
+    opacity: 0;
+    transition: .5s;
+  }
 
-.stream-card .streamer-logo {
-  width: 100%;
-  height: 100%;
-  border-radius: 0.2em;
-  position: absolute;
-  z-index: 0;
-  opacity: 1;
-}
+  .stream-card .streamer-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.2em;
+    position: absolute;
+    z-index: 0;
+    opacity: 1;
+  }
 
-.stream-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0px 10px 11px -2px rgba(0, 0, 0, 0.55);
-  cursor: pointer;
-}
+  .stream-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 10px 11px -2px rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+  }
 
-.stream-card:hover .bio {
-  opacity: 1;
-}
+  .stream-card:hover .bio {
+    opacity: 1;
+  }
 
-.stream-card:hover .streamer-name {
-  top: 0;
-  opacity: 1;
-}
+  .stream-card:hover .streamer-name {
+    top: 0;
+    opacity: 1;
+  }
 
-.stream-card:hover .streamer-logo {
-  opacity: .25;
-}
+  .stream-card:hover .streamer-logo {
+    opacity: .25;
+  }
 
 </style>
