@@ -21,13 +21,26 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
+      streams: []
     }
   },
   methods: {
     ...mapActions([
-    ])
+      'getStreamData'
+    ]),
+    connectVuexStreams () {
+      this.streams = this.$store.getters.getStreams
+      console.log(this.streams)
+    },
+    getAllTwitchApiData () {
+      Array.prototype.slice.call(arguments).forEach(element => {
+        this.getStreamData({ user: element })
+      })
+    }
   },
   created () {
+    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie')
+    this.connectVuexStreams()
   }
 }
 </script>
