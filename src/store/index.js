@@ -8,7 +8,6 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     users: [],
-    online: [],
     offlineList: [],
     onlineList: [],
     allUserList: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd']
@@ -23,9 +22,6 @@ const store = new Vuex.Store({
   mutations: {
     setUsersData: (state, payload) => {
       state.users.push(payload)
-    },
-    setStreamData: (state, payload) => {
-      state.online.push(payload)
     },
     setofflineList: (state, payload) => {
       state.offlineList.push(payload)
@@ -53,7 +49,6 @@ const store = new Vuex.Store({
         .then(res => {
           let data = res.data.stream
           if (data != null) {
-            commit('setStreamData', data)
             commit('setOnlineList', payload.user)
           } else {
             commit('setofflineList', payload.user)
