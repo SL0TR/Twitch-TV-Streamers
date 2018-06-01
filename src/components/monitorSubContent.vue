@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'PageIndex',
@@ -18,6 +18,10 @@ export default {
     }
   },
   methods: {
+    ...mapGetters([
+      'getAllUserList',
+      'getUsers'
+    ]),
     ...mapActions([
       'getUsersData',
       'callUserApiFunc'
@@ -25,11 +29,11 @@ export default {
   },
   computed: {
     connectVuexUsers () {
-      return this.$store.getters.getUsers
+      return this.getUsers()
     }
   },
   created () {
-    this.callUserApiFunc({ type: 'getUsersData' })
+    this.callUserApiFunc({ userList: this.getAllUserList(), type: 'getUsersData' })
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="monitorNav">
-    <div class="all stream-status active" @click="allUsers()">
+    <div class="all stream-status active" @click="setAllUsers ">
       <i class="ion-navicon-round"></i>
       <p>All</p>
     </div>
@@ -8,7 +8,7 @@
       <i class="ion-ios-circle-filled"></i>
       <p>Online</p>
     </div>
-    <div class="offline stream-status">
+    <div class="offline stream-status" @click="setOfflineUsers">
       <i class="ion-ios-circle-outline"></i>
       <p>Offline</p>
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -24,29 +24,33 @@ export default {
     }
   },
   methods: {
+    ...mapGetters([
+      'getAllUserList',
+      'getOnlineList',
+      'getOfflineList'
+    ]),
+    ...mapMutations([
+      'resetUsers'
+    ]),
     ...mapActions([
       'getStreamData',
       'callUserApiFunc'
     ]),
-    setOnlineUsers () {
-      let arr = []
-      this.$store.state.users.forEach((elem, index) => {
-        this.$store.state.online.forEach((el, index) => {
-          if (elem.name === el.channel.name && el.length !== 0) {
-            arr.push(elem)
-          }
-        })
-      })
-      this.$store.state.users = arr
-      console.log(this.$store.state.users)
+    setAllUsers () {
+      this.resetUsers()
+      this.callUserApiFunc({ userList: this.getAllUserList(), type: 'getUsersData' })
     },
-    allUsers () {
-      this.$store.state.users = []
-      this.callUserApiFunc({ type: 'getUsersData' })
+    setOnlineUsers () {
+      this.resetUsers()
+      this.callUserApiFunc({ userList: this.getOnlineList(), type: 'getUsersData' })
+    },
+    setOfflineUsers () {
+      this.resetUsers()
+      this.callUserApiFunc({ userList: this.getOfflineList(), type: 'getUsersData' })
     }
   },
   created () {
-    this.callUserApiFunc({ type: 'getStreamData' })
+    this.callUserApiFunc({ userList: this.getAllUserList(), type: 'getStreamData' })
   }
 }
 </script>

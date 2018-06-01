@@ -9,20 +9,32 @@ const store = new Vuex.Store({
   state: {
     users: [],
     online: [],
-    offline: []
+    offlineList: [],
+    onlineList: [],
+    allUserList: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd']
   },
   getters: {
     getUsers: state => state.users,
-    getStreams: state => state.streams
+    getStreams: state => state.streams,
+    getOfflineList: state => state.offlineList,
+    getOnlineList: state => state.onlineList,
+    getAllUserList: state => state.allUserList
   },
   mutations: {
-    getUsersData: (state, payload) => {
+    setUsersData: (state, payload) => {
       state.users.push(payload)
     },
-    getStreamData: (state, payload) => {
-      if (payload != null) {
-        state.online.push(payload)
-      }
+    setStreamData: (state, payload) => {
+      state.online.push(payload)
+    },
+    setofflineList: (state, payload) => {
+      state.offlineList.push(payload)
+    },
+    setOnlineList: (state, payload) => {
+      state.onlineList.push(payload)
+    },
+    resetUsers: (state) => {
+      state.users = []
     }
   },
   actions: {
@@ -30,7 +42,7 @@ const store = new Vuex.Store({
       axios.get(users + payload.user)
         .then(res => {
           let data = res.data
-          commit('getUsersData', data)
+          commit('setUsersData', data)
         })
         .catch(err => {
           console.log(err)
@@ -40,7 +52,12 @@ const store = new Vuex.Store({
       axios.get(streams + payload.user)
         .then(res => {
           let data = res.data.stream
-          commit('getStreamData', data)
+          if (data != null) {
+            commit('setStreamData', data)
+            commit('setOnlineList', payload.user)
+          } else {
+            commit('setofflineList', payload.user)
+          }
         })
         .catch(err => {
           console.log(err)
@@ -53,7 +70,7 @@ const store = new Vuex.Store({
     },
     callUserApiFunc: ({ dispatch }, payload) => {
       dispatch('getAllTwitchApiUsersData', {
-        param: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd'],
+        param: payload.userList,
         funcType: payload.type
       })
     }
