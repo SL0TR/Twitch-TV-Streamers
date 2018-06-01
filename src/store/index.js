@@ -40,12 +40,22 @@ const store = new Vuex.Store({
       axios.get(streams + payload.user)
         .then(res => {
           let data = res.data.stream
-          // console.log(data)
           commit('getStreamData', data)
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    getAllTwitchApiUsersData ({ dispatch }, payload) {
+      payload.param.forEach(element => {
+        dispatch(payload.funcType, { user: element })
+      })
+    },
+    callUserApiFunc: ({ dispatch }, payload) => {
+      dispatch('getAllTwitchApiUsersData', {
+        param: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd'],
+        funcType: payload.type
+      })
     }
   }
 })

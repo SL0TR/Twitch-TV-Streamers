@@ -1,6 +1,6 @@
 <template>
   <div class="monitorNav">
-    <div class="all stream-status active">
+    <div class="all stream-status active" @click="allUsers()">
       <i class="ion-navicon-round"></i>
       <p>All</p>
     </div>
@@ -25,13 +25,14 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getStreamData'
+      'getStreamData',
+      'callUserApiFunc'
     ]),
     setOnlineUsers () {
       let arr = []
       this.$store.state.users.forEach((elem, index) => {
         this.$store.state.online.forEach((el, index) => {
-          if (elem.name === el.channel.name) {
+          if (elem.name === el.channel.name && el.length !== 0) {
             arr.push(elem)
           }
         })
@@ -39,14 +40,13 @@ export default {
       this.$store.state.users = arr
       console.log(this.$store.state.users)
     },
-    getAllTwitchApiData () {
-      Array.prototype.slice.call(arguments).forEach(element => {
-        this.getStreamData({ user: element })
-      })
+    allUsers () {
+      this.$store.state.users = []
+      this.callUserApiFunc({ type: 'getUsersData' })
     }
   },
   created () {
-    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'drdisrespectlive', 'cdnthe3rd')
+    this.callUserApiFunc({ type: 'getStreamData' })
   }
 }
 </script>

@@ -19,13 +19,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getUsersData'
-    ]),
-    getAllTwitchApiData () {
-      Array.prototype.slice.call(arguments).forEach(element => {
-        this.getUsersData({ user: element })
-      })
-    }
+      'getUsersData',
+      'callUserApiFunc'
+    ])
   },
   computed: {
     connectVuexUsers () {
@@ -33,7 +29,7 @@ export default {
     }
   },
   created () {
-    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd')
+    this.callUserApiFunc({ type: 'getUsersData' })
   }
 }
 </script>
