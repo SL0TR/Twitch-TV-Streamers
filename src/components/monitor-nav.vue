@@ -1,14 +1,14 @@
 <template>
   <div class="monitorNav">
-    <div class="all stream-status active" @click="setAllUsers ">
+    <div class="all stream-status" @click="setAllUsers" :class="{ active : btnState === 0 }">
       <i class="ion-navicon-round"></i>
       <p>All</p>
     </div>
-    <div class="online stream-status" @click="setOnlineUsers">
+    <div class="online stream-status" @click="setOnlineUsers" :class="{ active : btnState === 1 }">
       <i class="ion-ios-circle-filled"></i>
       <p>Online</p>
     </div>
-    <div class="offline stream-status" @click="setOfflineUsers">
+    <div class="offline stream-status" @click="setOfflineUsers" :class="{ active : btnState === 2 }">
       <i class="ion-ios-circle-outline"></i>
       <p>Offline</p>
     </div>
@@ -21,6 +21,7 @@ import { mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      btnState: 0
     }
   },
   methods: {
@@ -37,14 +38,17 @@ export default {
       'callUserApiFunc'
     ]),
     setAllUsers () {
+      this.btnState = 0
       this.resetUsers()
       this.callUserApiFunc({ userList: this.getAllUserList(), type: 'getUsersData' })
     },
     setOnlineUsers () {
+      this.btnState = 1
       this.resetUsers()
       this.callUserApiFunc({ userList: this.getOnlineList(), type: 'getUsersData' })
     },
     setOfflineUsers () {
+      this.btnState = 2
       this.resetUsers()
       this.callUserApiFunc({ userList: this.getOfflineList(), type: 'getUsersData' })
     }

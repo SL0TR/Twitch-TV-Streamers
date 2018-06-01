@@ -53,7 +53,7 @@ export default {
   .stream-card {
     height: 25rem;
     width: 20rem;
-    background: linear-gradient(rgb(140, 97, 226), rgb(53, 26, 107));
+    background: linear-gradient(rgba(140, 97, 226), rgb(53, 26, 107));
     border-radius: 0.3em;
     box-shadow: 0px 10px 11px -6px rgba(0, 0, 0, 0.75);
     display: flex;
@@ -104,6 +104,7 @@ export default {
     transform: scale(1.02);
     box-shadow: 0px 10px 11px -2px rgba(0, 0, 0, 0.55);
     cursor: pointer;
+    background-blend-mode: overlay;
   }
 
   .stream-card:hover .bio {
@@ -116,7 +117,7 @@ export default {
   }
 
   .stream-card:hover .streamer-logo {
-    opacity: .25;
+    opacity: .15;
   }
 
 </style>
