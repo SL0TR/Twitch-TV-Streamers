@@ -1,6 +1,6 @@
 <template>
   <div class="my-info">
-    <h3><a href="https://codepen.io/SL0TR/" target="_blank" rel="noopener">Mohaimin</a>, 2017</h3>
+    <h3><a href="http://sl0tr.github.io" target="_blank" rel="noopener">Mohaimin</a>, 2017</h3>
     <div class="my-contact">
       <a href="https://www.linkedin.com/in/mohaimin-islam/" target="_blank" rel="noopener"><i class="ion-social-linkedin"></i></a>
       <a href="https://www.facebook.com/Mohaimin94" target="_blank" rel="noopener"><i class="ion-social-facebook"></i></a>

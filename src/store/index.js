@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     users: [],
-    streams: []
+    online: [],
+    offline: []
   },
   getters: {
     getUsers: state => state.users,
@@ -19,7 +20,9 @@ const store = new Vuex.Store({
       state.users.push(payload)
     },
     getStreamData: (state, payload) => {
-      state.streams.push(payload)
+      if (payload != null) {
+        state.online.push(payload)
+      }
     }
   },
   actions: {
@@ -37,6 +40,7 @@ const store = new Vuex.Store({
       axios.get(streams + payload.user)
         .then(res => {
           let data = res.data.stream
+          // console.log(data)
           commit('getStreamData', data)
         })
         .catch(err => {

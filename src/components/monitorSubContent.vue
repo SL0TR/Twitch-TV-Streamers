@@ -1,6 +1,6 @@
 <template>
   <div class="monitorSubContent">
-    <div class="stream-card" v-for="(user,id) in this.users" :key="id">
+    <div class="stream-card" v-for="(user,id) in connectVuexUsers" :key="id">
       <p class="streamer-name">{{ user.display_name }}</p>
       <img class="streamer-logo esl-logo"  alt="logo" :src="user.logo">
       <p class="bio">{{ user.bio }}</p>
@@ -15,26 +15,25 @@ export default {
   name: 'PageIndex',
   data () {
     return {
-      users: []
     }
   },
   methods: {
     ...mapActions([
       'getUsersData'
     ]),
-    connectVuexUsers () {
-      this.users = this.$store.getters.getUsers
-      console.log(this.users)
-    },
     getAllTwitchApiData () {
       Array.prototype.slice.call(arguments).forEach(element => {
         this.getUsersData({ user: element })
       })
     }
   },
+  computed: {
+    connectVuexUsers () {
+      return this.$store.getters.getUsers
+    }
+  },
   created () {
-    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie')
-    this.connectVuexUsers()
+    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd')
   }
 }
 </script>

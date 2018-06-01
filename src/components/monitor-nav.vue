@@ -4,7 +4,7 @@
       <i class="ion-navicon-round"></i>
       <p>All</p>
     </div>
-    <div class="online stream-status">
+    <div class="online stream-status" @click="setOnlineUsers">
       <i class="ion-ios-circle-filled"></i>
       <p>Online</p>
     </div>
@@ -21,16 +21,23 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
-      streams: []
     }
   },
   methods: {
     ...mapActions([
       'getStreamData'
     ]),
-    connectVuexStreams () {
-      this.streams = this.$store.getters.getStreams
-      console.log(this.streams)
+    setOnlineUsers () {
+      let arr = []
+      this.$store.state.users.forEach((elem, index) => {
+        this.$store.state.online.forEach((el, index) => {
+          if (elem.name === el.channel.name) {
+            arr.push(elem)
+          }
+        })
+      })
+      this.$store.state.users = arr
+      console.log(this.$store.state.users)
     },
     getAllTwitchApiData () {
       Array.prototype.slice.call(arguments).forEach(element => {
@@ -39,8 +46,7 @@ export default {
     }
   },
   created () {
-    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie')
-    this.connectVuexStreams()
+    this.getAllTwitchApiData('ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'drdisrespectlive', 'cdnthe3rd')
   }
 }
 </script>
