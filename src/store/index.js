@@ -10,7 +10,7 @@ const store = new Vuex.Store({
     users: [],
     offlineList: [],
     onlineList: [],
-    allUserList: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'shroud', 'cdnthe3rd']
+    allUserList: ['ESL_SC2', 'freecodecamp', 'riotgames', 'starladder1', 'shadbasemurdertv', 'imaqtpie', 'ninja', 'OgamingSC2', 'cdnthe3rd']
   },
   getters: {
     getUsers: state => state.users,

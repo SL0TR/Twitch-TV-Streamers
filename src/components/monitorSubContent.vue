@@ -1,10 +1,12 @@
 <template>
   <div class="monitorSubContent">
-    <div class="stream-card" v-for="(user,id) in connectVuexUsers" :key="id">
+    <a v-for="(user,id) in connectVuexUsers" :key="id" :href="'https://www.twitch.tv/' + user.name" rel="noopener" target="_blank">
+    <div class="stream-card" >
       <p class="streamer-name">{{ user.display_name }}</p>
       <img class="streamer-logo esl-logo"  alt="logo" :src="user.logo">
       <p class="bio">{{ user.bio }}</p>
     </div>
+    </a>
   </div>
 </template>
 
@@ -39,6 +41,10 @@ export default {
 </script>
 
 <style scoped>
+
+  a {
+    text-decoration: none;
+  }
 
   .monitorSubContent {
     flex: 10;
@@ -118,6 +124,13 @@ export default {
 
   .stream-card:hover .streamer-logo {
     opacity: .15;
+  }
+
+  @media (max-width: 700px) {
+    .stream-card {
+      width: 15rem;
+      height: 20rem;
+    }
   }
 
 </style>

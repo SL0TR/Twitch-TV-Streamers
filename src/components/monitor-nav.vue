@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style scoped>
+
 .monitorNav {
   flex: 1;
   background: rgba(100, 69, 162, 8);
@@ -92,5 +93,11 @@ export default {
 .stream-status i {
   color: #eee;
   font-size: 2em;
+}
+
+@media (max-width: 700px) {
+  .monitorNav {
+    flex: 3;
+  }
 }
 </style>

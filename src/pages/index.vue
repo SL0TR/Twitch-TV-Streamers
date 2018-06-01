@@ -72,6 +72,24 @@
   left: 0.3em;
   display: flex;
 }
+
+  @media (max-width: 700px) {
+    .mainPage {
+      align-items: center;
+    }
+
+    .header-title h2 {
+      font-size: 3rem;
+    }
+
+    .monitor {
+      width: 95vw;
+    }
+
+    .monitorContainer {
+      width: 95%;
+    }
+  }
 </style>
 
 <script>
