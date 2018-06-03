@@ -24,6 +24,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',
+      // publicPath: 'twitch-tv-streamer-site/',
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
