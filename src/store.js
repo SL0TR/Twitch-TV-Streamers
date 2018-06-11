@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {users, streams} from '../api'
+import {users, streams} from './api'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -73,3 +73,4 @@ const store = new Vuex.Store({
 })
 
 export default store
+

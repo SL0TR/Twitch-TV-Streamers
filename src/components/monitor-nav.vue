@@ -1,15 +1,15 @@
 <template>
   <div class="monitorNav">
     <div class="all stream-status" @click="setAllUsers" :class="{ active : btnState === 0 }">
-      <i class="ion-navicon-round"></i>
+      <ion-icon name="grid"></ion-icon>
       <p>All</p>
     </div>
     <div class="online stream-status" @click="setOnlineUsers" :class="{ active : btnState === 1 }">
-      <i class="ion-ios-circle-filled"></i>
+      <ion-icon name="radio-button-on"></ion-icon>
       <p>Online</p>
     </div>
     <div class="offline stream-status" @click="setOfflineUsers" :class="{ active : btnState === 2 }">
-      <i class="ion-ios-circle-outline"></i>
+      <ion-icon name="radio-button-off"></ion-icon>
       <p>Offline</p>
     </div>
   </div>
@@ -77,12 +77,14 @@ export default {
   justify-content: space-around;
   align-items: center;
   transition: 0.25s;
+  opacity: .5;
 }
 
 .stream-status:hover,
 .active {
   background: rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  opacity: 1 !important;
 }
 
 .stream-status p {
@@ -90,9 +92,8 @@ export default {
   font-size: 1em;
 }
 
-.stream-status i {
+.stream-status ion-icon {
   color: #eee;
-  font-size: 2em;
 }
 
 @media (max-width: 700px) {
